@@ -1,12 +1,17 @@
 import React from 'react'
 import { StyleSheet,Image,  View } from 'react-native'
- import {secondary , primary, black} from '../Config/Color'
-
+import { EvilIcons } from '@expo/vector-icons';
+import {secondary , primary, black} from '../Config/Color'
+import { MaterialIcons } from '@expo/vector-icons';
 export default function ViewImageScreen() {
     return (
         <View style={styles.container}>
-            <View style={styles.closeIcon} />
-            <View style={styles.trashIcon} />
+            <View style={styles.closeIcon} >
+                <EvilIcons name="trash" size={45} color="white" />
+            </View>
+            <View style={styles.trashIcon} >
+                <MaterialIcons name="cancel" size={35} color="white" />
+            </View>
             <Image 
             style={styles.image}
             resizeMode='contain'
@@ -19,24 +24,20 @@ const styles = StyleSheet.create({
 
 container:{
     backgroundColor: black,
+    height:'100%',
+    width:'100%'
 },
 
 closeIcon:{
-    height:50,
-    width:60,
-    backgroundColor: secondary,
     position:'absolute',
     top: 40,
-    left:40,
+    right:20,
   
 },
 trashIcon:{
-    height:50,
-    width:60,
     top: 40,
-    right:40,
+    left:20,
     position:'absolute',
-    backgroundColor: primary,
 },
 image:{
     height: '100%',
