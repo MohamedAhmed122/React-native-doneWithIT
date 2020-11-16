@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListItem from '../Components/ListItem/ListItem'
 import Constants from "expo-constants";
 import { FlatList, StyleSheet, View,  } from 'react-native'
@@ -6,6 +6,10 @@ import AppSeparator from '../Components/ListItem/AppSeparator';
 import ListItemDelete from '../Components/ListItem/ListItemDelete';
 
 const MessagesListScreen = () => {
+    const [messages, setMessages]= useState(initialValues)
+    const handleDeleteMessage= DeletedMessage =>
+        setMessages( messages
+            .filter(message =>message.id !== DeletedMessage.id))
     return (
         <View  style={styles.container}>
             <FlatList 
@@ -16,7 +20,7 @@ const MessagesListScreen = () => {
                 <ListItem
                     title={item.title} 
                     description={item.description} 
-                    renderRightActions={()=> <ListItemDelete />}
+                    renderRightActions={()=> <ListItemDelete onPress={()=>handleDeleteMessage(item)} />}
                 />
             }
             />
@@ -35,7 +39,7 @@ const styles = StyleSheet.create({
     
 })
 
-const messages =[
+const initialValues =[
     {
         id:1,
         title: 'Mohamed Youssef',

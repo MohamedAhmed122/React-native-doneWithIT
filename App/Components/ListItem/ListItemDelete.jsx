@@ -1,12 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import {danger} from '../../Config/Color'
-const ListItemDelete = () => {
+
+const ListItemDelete = ({onPress}) => {
     return (
-        <View style={styles.swipe}>
-            <EvilIcons name="trash" size={50} color="white" />
-        </View>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.swipe}>
+                <EvilIcons name="trash" size={50} color="white" />
+            </View>
+        </TouchableWithoutFeedback>
+      
     )
 }
 
