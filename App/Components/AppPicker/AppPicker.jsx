@@ -6,14 +6,16 @@ import AppText from '../AppText/AppText';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import PickerItem from './PickerItem';
 
-const AppPicker = ({ items }) => {
+const AppPicker = ({ items,selectedItem,setSelectedItem }) => {
     const[modalVisible, setModalVisible]= useState(false)
     return (
         <>
         <TouchableWithoutFeedback onPress={()=>setModalVisible(true)}>
             <View style={styles.container}>  
                 <Entypo name="list" size={24} color="gray" />
-                <AppText style={styles.text}>Category</AppText>
+                <AppText style={styles.text}>
+                    {selectedItem? selectedItem.label :'Category'}
+                </AppText>
                 <Entypo name="chevron-down" size={24} color="gray" />
             </View>
         </TouchableWithoutFeedback>
@@ -27,7 +29,14 @@ const AppPicker = ({ items }) => {
                     data={items}
                     keyExtractor={items => items.id.toString()}
                     renderItem={({item})=> <PickerItem
-                        label={item.label} onPress={console.log(' hello, I am',item)} />}
+                        label={item.label} 
+                        onPress={ ()=>{
+                            setModalVisible(false)
+                            setSelectedItem(item)
+                        }
+                           
+                        } />
+                    }
                 />
             </View>
             
