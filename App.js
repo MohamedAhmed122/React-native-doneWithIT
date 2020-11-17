@@ -11,20 +11,21 @@ import MessagesListScreen from './App/Screens/MessagesListScreen';
 import ViewImageScreen from './App/Screens/ViewImageScreen';
 import AppSwitch from './App/Components/AppSwitch/AppSwitch'
 import ListEditScreen from './App/Screens/ListEditScreen';
+import LoginScreen from './App/Screens/LoginScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-     <ListEditScreen />
+     <LoginScreen />
     </View>
   );
 }
 
 const styles = StyleSheet.create({ 
   container: {
-    flex:1,
-    backgroundColor:'#f4f4',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // flex:1,
+    // backgroundColor:'#f4f4',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });

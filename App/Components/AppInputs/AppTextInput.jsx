@@ -1,18 +1,27 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { black, lightGray } from '../../Config/Color'
-import { AntDesign } from '@expo/vector-icons';
-
-const AppTextInput = ({icon}) => {
-    const[input, setInput]= useState('')
+import { MaterialIcons } from '@expo/vector-icons';
+const AppTextInput = ({icon, placeholder, onChangeText, ...otherProps}) => {
+    
     return (
         <View style={styles.container}>
             {icon?
             <>
-                <AntDesign name="search1" size={24} color="gray" />
-                <TextInput value={input} onChangeText={(text)=>setInput(text)} style={styles.inputText} placeholder='First Name' />
+                <MaterialIcons name={icon} size={24} color="gray" />
+                <TextInput 
+                onChangeText={onChangeText} 
+                style={styles.inputText} 
+                placeholder={placeholder}
+                {...otherProps} 
+                />
             </>:
-               <TextInput value={input} onChangeText={(text)=>setInput(text)} style={styles.inputText} placeholder='First Name' />
+                <TextInput 
+                onChangeText={onChangeText} 
+                style={styles.inputText} 
+                placeholder={placeholder}
+                {...otherProps} 
+                />
             }
         
         </View>

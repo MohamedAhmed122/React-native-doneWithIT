@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         borderRadius:25,
         alignItems:'center',
         justifyContent:'center',
-        marginBottom:20
+        marginBottom:20,
+        alignSelf:'center'
     },
     text:{
         fontSize:18,

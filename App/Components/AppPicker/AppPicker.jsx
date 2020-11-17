@@ -33,9 +33,8 @@ const AppPicker = ({ items,selectedItem,setSelectedItem }) => {
                         onPress={ ()=>{
                             setModalVisible(false)
                             setSelectedItem(item)
-                        }
-                           
-                        } />
+                        }} 
+                        />
                     }
                 />
             </View>
