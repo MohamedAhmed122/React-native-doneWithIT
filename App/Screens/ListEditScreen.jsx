@@ -1,27 +1,66 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import AppPicker from '../Components/AppPicker/AppPicker'
+import React  from 'react'
+import { Image, StyleSheet, View } from 'react-native'
+import Constants from "expo-constants";
+import AppFormField from '../Components/Forms/AppFormField'
+import * as Yup from 'yup'
+import AppSubmitButton from '../Components/Forms/AppSubmitButton';
+import AppForm from '../Components/Forms/AppForm';
+import AppFormPicker from '../Components/Forms/AppFormPicker';
+
 
 const ListEditScreen = () => {
-    const [selectedItem, setSelectedItem] = useState();
+
+    const validationSchema = Yup.object().shape({
+        title: Yup.string().required().label('Title') ,
+        price: Yup.number().required().label('Price'),
+        category: Yup.string().required().nullable().label('Category') ,
+        description: Yup.string().required().min(12).label('Description'),
+        
+    })
+
     return (
-        <View  style={{width:'100%'}}>
-            <AppPicker 
-            items={categories} 
-            selectedItem={selectedItem} 
-            setSelectedItem={(i)=>setSelectedItem(i)}/>
+        <View style={styles.screen}>
+            <AppForm
+                initialValues={{title: '', price: '',description:'',category:null }}
+                validationSchema={validationSchema}
+                onSubmit={(values)=>{
+                    console.log(values)
+                }}
+            >
+                    <>
+                        <AppFormField  name='title' placeholder='Title'/>
+                         <AppFormField 
+                            name='price'
+                            placeholder='Price'
+                            autoCorrect
+                            keyboardType='numeric'
+                        />
+                         <AppFormPicker  name='category'  placeholder='Category'/>
+                         <AppFormField 
+                            name='description'
+                            placeholder='Description'
+                            autoCorrect
+                            keyboardType='default'
+                            multiline
+                            numberOfLines={3}
+                        />
+                        <AppSubmitButton 
+                            title='Post' 
+                        />
+                    </>
+            </AppForm>
+          
         </View>
     )
 }
 
 export default ListEditScreen
 
-const styles = StyleSheet.create({})
-
-const categories =[
-    {label: 'Furniture', id:1},
-    {label: 'Camera', id:2},
-    {label: 'Glass', id:3},
-    {label: 'Phones', id:4},
-
-]
+const styles = StyleSheet.create({
+    screen:{
+        paddingTop: Constants.statusBarHeight,
+        height:'100%',
+        width:'100%',
+    },
+   
+})

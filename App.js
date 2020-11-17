@@ -12,11 +12,12 @@ import ViewImageScreen from './App/Screens/ViewImageScreen';
 import AppSwitch from './App/Components/AppSwitch/AppSwitch'
 import ListEditScreen from './App/Screens/ListEditScreen';
 import LoginScreen from './App/Screens/LoginScreen';
+import RegisterScreen from './App/Screens/RegisterScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-     <LoginScreen />
+     <ListEditScreen />
     </View>
   );
 }
