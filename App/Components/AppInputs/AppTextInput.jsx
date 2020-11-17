@@ -1,29 +1,18 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import React from 'react'
+import { StyleSheet, TextInput, View } from 'react-native'
 import { black, lightGray } from '../../Config/Color'
 import { MaterialIcons } from '@expo/vector-icons';
-const AppTextInput = ({icon, placeholder, onChangeText, ...otherProps}) => {
+const AppTextInput = ({icon, placeholder,style, onChangeText, ...otherProps}) => {
     
     return (
         <View style={styles.container}>
-            {icon?
-            <>
-                <MaterialIcons name={icon} size={24} color="gray" />
-                <TextInput 
+            {icon &&  <MaterialIcons name={icon} size={24} color="gray" />}
+            <TextInput 
                 onChangeText={onChangeText} 
-                style={styles.inputText} 
+                style={[styles.inputText, style]} 
                 placeholder={placeholder}
                 {...otherProps} 
-                />
-            </>:
-                <TextInput 
-                onChangeText={onChangeText} 
-                style={styles.inputText} 
-                placeholder={placeholder}
-                {...otherProps} 
-                />
-            }
-        
+            />
         </View>
     )
 }

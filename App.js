@@ -13,6 +13,7 @@ import AppSwitch from './App/Components/AppSwitch/AppSwitch'
 import ListEditScreen from './App/Screens/ListEditScreen';
 import LoginScreen from './App/Screens/LoginScreen';
 import RegisterScreen from './App/Screens/RegisterScreen';
+import PickerItem from './App/Components/AppPicker/PickerItem';
 
 export default function App() {
   return (
@@ -24,7 +25,8 @@ export default function App() {
 
 const styles = StyleSheet.create({ 
   container: {
-    // flex:1,
+    flex:1,
+    marginTop:50,
     // backgroundColor:'#f4f4',
     // alignItems: 'center',
     // justifyContent: 'center',

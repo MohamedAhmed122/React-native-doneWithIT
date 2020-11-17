@@ -29,13 +29,18 @@ const ListEditScreen = () => {
             >
                     <>
                         <AppFormField  name='title' placeholder='Title'/>
+                        <View style={styles.priceContainer}>
                          <AppFormField 
                             name='price'
                             placeholder='Price'
                             autoCorrect
                             keyboardType='numeric'
                         />
-                         <AppFormPicker  name='category'  placeholder='Category'/>
+                        </View>
+                        <View style={styles.pickerContainer} >
+                            <AppFormPicker   name='category'  placeholder='Category'/>
+                        </View>
+                        
                          <AppFormField 
                             name='description'
                             placeholder='Description'
@@ -62,5 +67,11 @@ const styles = StyleSheet.create({
         height:'100%',
         width:'100%',
     },
+    pickerContainer:{
+        width: '60%'
+    },
+    priceContainer:{
+        width: '35%',
+    }
    
 })

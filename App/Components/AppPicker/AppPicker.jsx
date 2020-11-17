@@ -20,16 +20,19 @@ const AppPicker = ({ items,selectedItem,setSelectedItem }) => {
             </View>
         </TouchableWithoutFeedback>
         <Modal
-        animationType="slide"
-        visible={modalVisible}
+            animationType="slide"
+            visible={modalVisible}
         >
             <View style={styles.modalContainer}>
                 <Button title='close' onPress={()=>setModalVisible(false)} />
                 <FlatList 
+                    style={styles.listContainer}
                     data={items}
                     keyExtractor={items => items.id.toString()}
                     renderItem={({item})=> <PickerItem
                         label={item.label} 
+                        color={item.color} 
+                        icon={item.icon} 
                         onPress={ ()=>{
                             setModalVisible(false)
                             setSelectedItem(item)
@@ -66,5 +69,10 @@ const styles = StyleSheet.create({
     },
     modalContainer:{
         marginTop:30,
+        flex: 1,
+    },
+    listContainer:{
+    
+        flex:1
     }
 })

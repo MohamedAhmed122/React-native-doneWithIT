@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFormikContext } from 'formik'
 import ErrorMessage from './ErrorMessage'
-import { StyleSheet} from 'react-native'
+import { StyleSheet, View} from 'react-native'
 import AppPicker from '../AppPicker/AppPicker'
 
 const AppFormPicker = ({name, ...otherProps}) => {
@@ -24,9 +24,13 @@ export default AppFormPicker
 const styles = StyleSheet.create({})
 
 const categories =[
-    {label: 'Furniture', id:1},
-    {label: 'Camera', id:2},
-    {label: 'Glass', id:3},
-    {label: 'Phones', id:4},
+    {label: 'Furniture', id:1, icon:'floor-lamp', color:'#fc5c6c'},
+    {label: 'Cars', id:2, icon:'car', color:'#fd9644'},
+    {label: 'Cameras', id:3, icon: 'camera', color:'#fed330'},
+    {label: 'Games', id:4 , icon:'cards', color:'#26de81'},
+    {label: 'Clothing', id:5, icon: 'shoe-heel', color:'#2bcbba'},
+    {label: 'Sports', id:6 , icon:'basketball', color:'#45aaf2'},
+    {label: 'Movies & Music', id:7 , icon:'headphones', color:'#4b7bec'},
 
 ]
+
