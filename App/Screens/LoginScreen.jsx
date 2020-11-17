@@ -5,9 +5,10 @@ import Constants from "expo-constants";
 import AppButton from '../Components/AppButton/AppButton';
 import { primary } from '../Config/Color';
 import { Formik } from 'formik';
-import ErrorMessage from '../Components/Forms/ErrorMessage'
-import AppText from '../Components/AppText/AppText'
+import AppFormField from '../Components/Forms/AppFormField'
 import * as Yup from 'yup'
+import AppSubmitButton from '../Components/Forms/AppSubmitButton';
+import AppForm from '../Components/Forms/AppForm';
 
 
 const LoginScreen = () => {
@@ -22,45 +23,37 @@ const LoginScreen = () => {
             <Image 
             style={styles.logo}
             source={require('../../assets/logo-red.png')} />
-            <Formik
+            <AppForm
                 initialValues={{email: '', password:''}}
                 validationSchema={validationSchema}
                 onSubmit={(values)=>{
                     console.log(values)
                 }}
             >
-                {({handleChange, handleSubmit, errors, setFieldTouched, touched })=>(
                     <>
-                        <AppTextInput 
+                        <AppFormField 
                             icon='email'
-                            onChangeText={handleChange('email')}
+                            name='email'
                             placeholder='Email Address'
                             autoCapitalize='none'
                             autCorrect={false}
                             keyboardType='email-address'
                             textContentType='emailAddress'
-                            onBlur={()=>setFieldTouched('email')}
                         />
-                        <ErrorMessage isTouched={touched.email} error={errors.email}/>
-                        <AppTextInput 
+                        <AppFormField 
                             icon='lock'
-                            onChangeText={handleChange('password')}
                             placeholder='Password'
                             autoCapitalize='none'
                             autCorrect={false}
                             textContentType='password'
                             secureTextEntry
-                            onBlur={()=>setFieldTouched('password')}
+                            name='password'
                         />
-                       <ErrorMessage isTouched={touched.password} error={errors.password}/>
-                        <AppButton 
+                        <AppSubmitButton 
                             title='Login' 
-                            color={primary} 
-                            onPress={handleSubmit} 
                         />
                     </>
-                )}
-            </Formik>
+            </AppForm>
           
         </View>
     )

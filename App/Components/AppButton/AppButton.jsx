@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {primary, white} from '../../Config/Color'
 
-export default function AppButton({title, onPress , color='primary'}) {
+export default function AppButton({title, onPress , color=primary}) {
     return (
         <TouchableOpacity 
         onPress={onPress} 
