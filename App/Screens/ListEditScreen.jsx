@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import AppSubmitButton from '../Components/Forms/AppSubmitButton';
 import AppForm from '../Components/Forms/AppForm';
 import AppFormPicker from '../Components/Forms/AppFormPicker';
+import ImagePicker from '../Components/ImageInput/ImagePicker';
 
 
 const ListEditScreen = () => {
@@ -28,6 +29,7 @@ const ListEditScreen = () => {
                 }}
             >
                     <>
+                        <ImagePicker />
                         <AppFormField  name='title' placeholder='Title'/>
                         <View style={styles.priceContainer}>
                          <AppFormField 
