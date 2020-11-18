@@ -18,7 +18,7 @@ import PickerItem from './App/Components/AppPicker/PickerItem';
 export default function App() {
   return (
     <View style={styles.container}>
-     <ListEditScreen />
+     <HomeScreen />
     </View>
   );
 }

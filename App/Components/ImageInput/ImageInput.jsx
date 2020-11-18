@@ -1,56 +1,79 @@
-import React from 'react'
-import { StyleSheet,Image,Alert, TouchableWithoutFeedback, View } from 'react-native'
-import { Entypo } from '@expo/vector-icons';
-import { lightGray } from '../../Config/Color';
+import React, { useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 
-const ImageInput = ({image,setImage ,pickImage }) => {
+import { lightGray } from "../../Config/Color";
 
-    const HandleDelete = () =>{
-        Alert.alert(
-          "Delete",
-          "Are you Sure you wanna delete this image?",
-          [
-            {
-              text: "Yes",
-              onPress: () => setImage(null),
-              
-            },
-            { text: "No", onPress: () => console.log("OK Pressed") }
-          ],
-        );
+
+function ImageInput({ imageUri, onChangeImage }) {
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access the library.");
+  };
+
+  const handlePress = () => {
+    if (!imageUri) selectImage();
+    else
+      Alert.alert("Delete", "Are you sure you want to delete this image?", [
+        { text: "Yes", onPress: () => onChangeImage(null) },
+        { text: "No" },
+      ]);
+  };
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
+      });
+      if (!result.cancelled) onChangeImage(result.uri);
+    } catch (error) {
+      console.log("Error reading an image", error);
     }
+  };
 
-    return (
-        <View style={{marginTop:30, flexDirection:'row'}} >
-             
-          {image && 
-            <TouchableWithoutFeedback onPress={()=>HandleDelete()}>
-                <Image  source={{ uri: image }} style={styles.image} />
-            </TouchableWithoutFeedback>}
-            <View style={styles.container}>
-                <Entypo name="camera" size={40} color="black" onPress={pickImage} />
-            </View>
-         </View>
-    );
+  return (
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri && (
+          <MaterialCommunityIcons
+            color='gray'
+            name="camera"
+            size={40}
+          />
+        )}
+        {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
+      </View>
+    </TouchableWithoutFeedback>
+  );
 }
 
-export default ImageInput
-
 const styles = StyleSheet.create({
-    container:{
-        height:120,
-        width:120,
-        borderRadius:25,
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor: lightGray,
-        margin:10,
-    },
-    image:{
-        height:120,
-        width:120,
-        borderRadius:25,
-        marginHorizontal:10,
-        marginVertical:10,
-    }
-})
+  container: {
+    alignItems: "center",
+    backgroundColor: lightGray,
+    borderRadius: 15,
+    height: 100,
+    justifyContent: "center",
+    overflow: "hidden",
+    width: 100,
+   margin:10,
+  },
+  image: {
+    height: "100%",
+    width: "100%",
+  },
+});
+
+export default ImageInput;

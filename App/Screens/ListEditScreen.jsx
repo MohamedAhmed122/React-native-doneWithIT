@@ -7,6 +7,7 @@ import AppSubmitButton from '../Components/Forms/AppSubmitButton';
 import AppForm from '../Components/Forms/AppForm';
 import AppFormPicker from '../Components/Forms/AppFormPicker';
 import ImagePicker from '../Components/ImageInput/ImagePicker';
+import AppFormImage from '../Components/ImageInput/AppFormImage';
 
 
 const ListEditScreen = () => {
@@ -16,20 +17,24 @@ const ListEditScreen = () => {
         price: Yup.number().required().label('Price'),
         category: Yup.string().required().nullable().label('Category') ,
         description: Yup.string().required().min(12).label('Description'),
+        images: Yup.array().min(1, 'At least insert one image')
         
     })
 
     return (
         <View style={styles.screen}>
             <AppForm
-                initialValues={{title: '', price: '',description:'',category:null }}
+                initialValues={{title: '', price: '',description:'',category:null, images:[]}}
                 validationSchema={validationSchema}
                 onSubmit={(values)=>{
                     console.log(values)
                 }}
             >
                     <>
-                        <ImagePicker />
+                    <View style={{height:150,}}>
+                    <AppFormImage name='images' />
+                    </View>
+                      
                         <AppFormField  name='title' placeholder='Title'/>
                         <View style={styles.priceContainer}>
                          <AppFormField 

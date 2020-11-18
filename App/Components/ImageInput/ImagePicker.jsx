@@ -37,7 +37,7 @@ export default function PhotoPicker() {
   };
 
   return (
-    <ImageInput setImage={setImage} pickImage={pickImage} image={image}/>
+    <ImageInput  setImage={setImage} pickImage={pickImage} image={image}/>
   );
 
 }
