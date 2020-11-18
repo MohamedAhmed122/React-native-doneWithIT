@@ -1,27 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AppTextInput from './App/Components/AppInputs/AppTextInput';
-import Card from './App/Components/Card/Card';
-import ListIcon from './App/Components/ListItem/ListIcon';
-import { lightGray } from './App/Config/Color';
-import AccountScreen from './App/Screens/AccountScreen';
-import HomeScreen from './App/Screens/HomeScreen'
-import MessagesListScreen from './App/Screens/MessagesListScreen';
-import ViewImageScreen from './App/Screens/ViewImageScreen';
-import AppSwitch from './App/Components/AppSwitch/AppSwitch'
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import ListEditScreen from './App/Screens/ListEditScreen';
-import LoginScreen from './App/Screens/LoginScreen';
-import RegisterScreen from './App/Screens/RegisterScreen';
-import PickerItem from './App/Components/AppPicker/PickerItem';
+
+
+const Stack = createStackNavigator();
+const StackNavigation = ()=>{
+  return(
+    <Stack.Navigator>
+          <Stack.Screen name='Tweets'  component={Tweet}  />
+          <Stack.Screen 
+          name='Tweets Details' 
+          component={TweetDetails}
+          options={({route})=> ({title: route.params.id})}  />
+      </Stack.Navigator>
+  )
+  
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-     <ListEditScreen />
-    </View>
+    // <View style={styles.container}>
+    //  <ListEditScreen />
+    // </View>
+    <NavigationContainer>
+        <StackNavigation />
+    </NavigationContainer>
   );
 }
+const Tweet =({navigation})=>{
+  return(
+    <View>
+      <Button
+        title='View other Tweets'
+        onPress={()=>navigation.navigate('Tweets Details', {id: 1}) } />
+          {/* <Link />              <---- */}
+    </View>
+  )
+}
+const TweetDetails =({route})=>{
+    //UseRoute
+  return(
+    <View style={{marginTop:100}}>
+      <Text>Tweet Details {route.params.id}</Text>
+      
+      {/* <Link />              <---- */}
+    </View>
+  )
+}
+// const Link = ()=>{
+//   const navigation = useNavigation()
+//   return(
+//     <Button
+//         title='View other Tweets'
+//         onPress={()=>navigation.navigate('Tweets Details',) } />
+//   )
+// }
 
 const styles = StyleSheet.create({ 
   container: {
