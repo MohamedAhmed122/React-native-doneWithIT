@@ -1,13 +1,14 @@
-import React  from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import React from 'react'
+import {  StyleSheet, View } from 'react-native'
 import Constants from "expo-constants";
 import AppFormField from '../Components/Forms/AppFormField'
 import * as Yup from 'yup'
 import AppSubmitButton from '../Components/Forms/AppSubmitButton';
 import AppForm from '../Components/Forms/AppForm';
 import AppFormPicker from '../Components/Forms/AppFormPicker';
-import ImagePicker from '../Components/ImageInput/ImagePicker';
 import AppFormImage from '../Components/ImageInput/AppFormImage';
+import UseLocation from '../Hooks/UseLocation';
+
 
 
 const ListEditScreen = () => {
@@ -20,7 +21,8 @@ const ListEditScreen = () => {
         images: Yup.array().min(1, 'At least insert one image')
         
     })
-
+   
+    let location = UseLocation();
     return (
         <View style={styles.screen}>
             <AppForm
