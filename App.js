@@ -8,6 +8,7 @@ import HomeScreen from './App/Screens/HomeScreen'
 import TabNavigation from './App/Navigation/TabNavigation';
 import TabIcon from './App/Components/TabIcon/TabIcon';
 import AuthNavigation from './App/Navigation/AuthNavigation';
+import ShoppingDetailScreen from './App/Screens/ShoppingDetailScreen';
 
 
 
@@ -17,7 +18,7 @@ export default function App() {
      <TabNavigation />
    </NavigationContainer>
     // <View style={styles.container}>
-    //   <TabIcon />
+    //   <ShoppingDetailScreen />
     // </View>
   
   );
@@ -25,10 +26,10 @@ export default function App() {
 
 const styles = StyleSheet.create({ 
   container: {
-    flex:1,
-    marginTop:50,
-    backgroundColor:'#f4f4',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // flex:1,
+    // marginTop:50,
+    // backgroundColor:'#f4f4',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });

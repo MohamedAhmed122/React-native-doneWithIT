@@ -4,14 +4,14 @@ import Card from '../Components/Card/Card'
 import { lightGray } from '../Config/Color'
 import Constants from "expo-constants";
 
-const ShoppingScreen = () => {
+const ShoppingScreen = ({navigation}) => {
     return (
         <View style={styles.screen}>
             <FlatList 
                 data={cardItems}
                 keyExtractor={(cardItems)=> cardItems.id.toString()}
                 renderItem={({item})=> (
-                    <Card items ={item}/>
+                    <Card items ={item} onPress={()=>navigation.navigate('Shopping Details',  item)}/>
                 )}
                 />
         </View>

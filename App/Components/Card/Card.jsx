@@ -4,9 +4,9 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import { secondary, white } from '../../Config/Color'
 import AppText from '../AppText/AppText'
 
-const Card = ({items}) => {
+const Card = ({items, onPress}) => {
     return (
-        <TouchableWithoutFeedback style={styles.container}>
+        <TouchableWithoutFeedback onPress={onPress} style={styles.container}>
            <Image 
            source={items.source}  
            style={styles.image}/>
