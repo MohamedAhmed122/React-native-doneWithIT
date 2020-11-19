@@ -14,7 +14,7 @@ import AuthNavigation from './App/Navigation/AuthNavigation';
 export default function App() {
   return (
    <NavigationContainer>
-     <AuthNavigation />
+     <TabNavigation />
    </NavigationContainer>
     // <View style={styles.container}>
     //   <TabIcon />

@@ -10,7 +10,7 @@ const AccountScreen = () => {
     return (
         <View style={styles.screen}>
             <View style={styles.listItem}>
-                <ListItem title='Mohamed Youssef' description='mohamed@gmail.com'/>
+                <ListItem source={require('../../assets/user.png')} title='Mohamed Youssef' description='mohamed@gmail.com'/>
             </View>
             <View>
                 <FlatList

@@ -4,12 +4,13 @@ import { white } from '../../Config/Color'
 import AppText from '../AppText/AppText'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-const ListItem = ({description, title, renderRightActions}) => {
+const ListItem = ({description, title,source, renderRightActions}) => {
     return (
         <Swipeable renderRightActions={renderRightActions}>
             <TouchableOpacity style={styles.container}>
                 <Image 
-                source={require('../../../assets/mosh.jpg')}
+                source={source}
+                resizeMode='contain'
                 style={styles.image} />
                 <View style={styles.textContainer}>
                     <AppText>{title}</AppText>
