@@ -8,6 +8,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { primary } from '../Config/Color';
 import TabIcon from '../Components/TabIcon/TabIcon';
 import ShopNavigation from './ShopNavigation';
+import AccountNavigation from './AccountNavigation';
 
 const TabNavigation = () => {
     const Tab = createBottomTabNavigator()
@@ -36,8 +37,8 @@ const TabNavigation = () => {
                         )
                     }} />
                  <Tab.Screen 
-                    name='Account'
-                    component={AccountScreen} 
+                    name='Account Plus'
+                    component={AccountNavigation} 
                     options={{
                         tabBarIcon :({color, size})=>(
                             <MaterialIcons name="person" size={size} color={color} />

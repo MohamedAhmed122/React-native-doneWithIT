@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
-import ShoppingScreen from '../Screens/ShoppingScreen';
-import ShoppingDetailScreen from '../Screens/ShoppingDetailScreen';
-import { primary } from '../Config/Color';
 
-const ShopNavigation = () => {
+import { primary } from '../Config/Color';
+import AccountScreen from '../Screens/AccountScreen';
+import MessagesScreen from '../Screens/MessagesScreen'
+
+const AccountNavigation = () => {
     const Stack = createStackNavigator()
     return (
        <Stack.Navigator
@@ -14,12 +15,12 @@ const ShopNavigation = () => {
                 headerTintColor:primary
             }}
        >
-           <Stack.Screen name='Shopping' component={ShoppingScreen} />
-           <Stack.Screen name='Shopping Details' component={ShoppingDetailScreen} />
+           <Stack.Screen name='Account' component={AccountScreen} />
+           <Stack.Screen name='Messages' component={MessagesScreen} />
        </Stack.Navigator>
     )
 }
 
-export default ShopNavigation
+export default AccountNavigation
 
 const styles = StyleSheet.create({})

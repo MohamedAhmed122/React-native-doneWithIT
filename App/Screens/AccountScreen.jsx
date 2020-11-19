@@ -2,11 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Constants from "expo-constants";
 import { FlatList } from 'react-native-gesture-handler';
-import { lightGray, primary, secondary, yellow } from '../Config/Color';
+import { lightGray, primary, secondary } from '../Config/Color';
 import ListIcon from '../Components/ListItem/ListIcon';
 import ListItem from '../Components/ListItem/ListItem';
 import AppSeparator from '../Components/ListItem/AppSeparator';
-const AccountScreen = () => {
+
+
+const AccountScreen = ({navigation}) => {
+
     return (
         <View style={styles.screen}>
             <View style={styles.listItem}>
@@ -22,7 +25,7 @@ const AccountScreen = () => {
                             title={item.title}
                             color={item.color}
                             icon={item.icon}
-                            onPress={console.log(item)}
+                            onPress={()=>navigation.navigate(item.targetScreen)}
                         />
                     }
                 />
@@ -57,12 +60,15 @@ const icons=[
         color: primary,
         title: 'My Listings',
         icon: 'format-list-bulleted',
+        // source: require('../../assets/user.png')
     },
     {
 
         id: 2,
         color: secondary,
-        title: 'My Listings',
+        title: 'Messages',
         icon: 'email',
+        targetScreen: 'Messages',
+        // source: require('../../assets/user.png')
     }
 ]

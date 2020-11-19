@@ -1,14 +1,9 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import ListEditScreen from './App/Screens/ListEditScreen';
-import ShoppingScreen from './App/Screens/ShoppingScreen';
-import HomeScreen from './App/Screens/HomeScreen'
+import {  StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
 import TabNavigation from './App/Navigation/TabNavigation';
-import TabIcon from './App/Components/TabIcon/TabIcon';
-import AuthNavigation from './App/Navigation/AuthNavigation';
-import ShoppingDetailScreen from './App/Screens/ShoppingDetailScreen';
+
 
 
 

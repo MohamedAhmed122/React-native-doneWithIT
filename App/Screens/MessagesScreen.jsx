@@ -5,7 +5,7 @@ import { FlatList, StyleSheet, View,  } from 'react-native'
 import AppSeparator from '../Components/ListItem/AppSeparator';
 import ListItemDelete from '../Components/ListItem/ListItemDelete';
 
-const MessagesListScreen = () => {
+const MessagesScreen = () => {
     const [messages, setMessages]= useState(initialValues)
     const handleDeleteMessage= DeletedMessage =>
         setMessages( messages
@@ -20,6 +20,7 @@ const MessagesListScreen = () => {
                 <ListItem
                     title={item.title} 
                     description={item.description} 
+                    source={item.source}
                     renderRightActions={()=> <ListItemDelete onPress={()=>handleDeleteMessage(item)} />}
                 />
             }
@@ -28,7 +29,7 @@ const MessagesListScreen = () => {
     )
 }
 
-export default MessagesListScreen
+export default MessagesScreen
 
 const styles = StyleSheet.create({
     container:{
@@ -43,11 +44,13 @@ const initialValues =[
     {
         id:1,
         title: 'Mohamed Youssef',
-        description: 'D1'
+        description: 'D1',
+        source: require('../../assets/user.png')
     },
     {
         id:2,
         title: 'Mohamed Ahmed',
-        description: 'D2'
+        description: 'D2',
+        source: require('../../assets/user.png')
     }
 ]
