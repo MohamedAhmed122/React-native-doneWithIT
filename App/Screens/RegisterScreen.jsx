@@ -5,6 +5,7 @@ import AppFormField from '../Components/Forms/AppFormField'
 import * as Yup from 'yup'
 import AppSubmitButton from '../Components/Forms/AppSubmitButton';
 import AppForm from '../Components/Forms/AppForm';
+import { white } from '../Config/Color';
 
 
 const RegisterScreen = () => {
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
         height:'100%',
         width:'100%',
+        backgroundColor: white
     },
    
 })

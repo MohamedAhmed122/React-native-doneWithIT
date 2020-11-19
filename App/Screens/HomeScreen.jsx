@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native'
 import AppButton from '../Components/AppButton/AppButton';
 import { secondary } from '../Config/Color';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
     return (
       <ImageBackground 
         source={require('../../assets/background.jpg')} 
@@ -14,8 +14,8 @@ export default function HomeScreen() {
                 <Text style={styles.text}>Sell your old product here</Text>
             </View>
             <View style={styles.btnContainer}>
-                <AppButton title='Login' onPress={()=>console.log('tapped')}/>
-                <AppButton color={secondary} title='Register' onPress={()=>console.log('tapped')}/>
+                <AppButton title='Login' onPress={()=> navigation.navigate('Login')}/>
+                <AppButton color={secondary} title='Register' onPress={()=> navigation.navigate('Register')}/>
             </View>
           
            
