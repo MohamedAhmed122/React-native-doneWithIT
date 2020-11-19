@@ -14,7 +14,7 @@ const ShopNavigation = () => {
                 headerTintColor:primary
             }}
        >
-           <Stack.Screen name='Shopping' component={ShoppingScreen} />
+           <Stack.Screen name='Shopping' component={ShoppingScreen} options={{headerShown:false}}/>
            <Stack.Screen name='Shopping Details' component={ShoppingDetailScreen} />
        </Stack.Navigator>
     )

@@ -32,12 +32,12 @@ const TabNavigation = () => {
                     name='ListEdit'
                     component={ListEditScreen}
                     options={{
-                        tabBarIcon :()=>(
+                        tabBarButton :()=>(
                             <TabIcon />
                         )
                     }} />
                  <Tab.Screen 
-                    name='Account Plus'
+                    name='Account'
                     component={AccountNavigation} 
                     options={{
                         tabBarIcon :({color, size})=>(

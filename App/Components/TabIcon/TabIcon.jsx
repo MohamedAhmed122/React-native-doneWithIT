@@ -1,17 +1,21 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { primary, white } from '../../Config/Color';
 
+import { useNavigation } from '@react-navigation/native';
+
 
 const TabIcon = () => {
+    const navigation = useNavigation()
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.subContainer}>
-                <AntDesign name="plus" size={24} color={primary} />
+        <TouchableOpacity onPress={()=>navigation.navigate('ListEdit')}>
+            <View style={styles.mainContainer}>
+                <View style={styles.subContainer}>
+                    <AntDesign name="plus" size={24} color={primary} />
+                </View>
             </View>
-
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -21,11 +25,12 @@ const styles = StyleSheet.create({
     mainContainer:{
         backgroundColor: primary,
         height:60,
+        bottom:12,
         width:60,
         borderRadius:30,
         alignItems:'center',
         justifyContent:'center',
-        marginBottom:10,
+      
     },
     subContainer:{
         backgroundColor: white,

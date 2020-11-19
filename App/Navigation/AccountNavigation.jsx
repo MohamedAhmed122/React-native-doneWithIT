@@ -15,7 +15,7 @@ const AccountNavigation = () => {
                 headerTintColor:primary
             }}
        >
-           <Stack.Screen name='Account' component={AccountScreen} />
+           <Stack.Screen name='My Account' component={AccountScreen} />
            <Stack.Screen name='Messages' component={MessagesScreen} />
        </Stack.Navigator>
     )
