@@ -4,14 +4,16 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ListEditScreen from './App/Screens/ListEditScreen';
 import ShoppingScreen from './App/Screens/ShoppingScreen';
+import HomeScreen from './App/Screens/HomeScreen'
+import TabNavigation from './App/Navigation/TabNavigation';
 
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-     <ShoppingScreen />
-    </View>
+   <NavigationContainer>
+     <TabNavigation />
+   </NavigationContainer>
   
   );
 }

@@ -8,6 +8,7 @@ import AppForm from '../Components/Forms/AppForm';
 import AppFormPicker from '../Components/Forms/AppFormPicker';
 import AppFormImage from '../Components/ImageInput/AppFormImage';
 import UseLocation from '../Hooks/UseLocation';
+import { white } from '../Config/Color';
 
 
 
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
         height:'100%',
         width:'100%',
+        backgroundColor:white
     },
     pickerContainer:{
         width: '60%'
