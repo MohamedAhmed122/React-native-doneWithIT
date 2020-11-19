@@ -1,19 +1,20 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import { secondary, white } from '../../Config/Color'
 import AppText from '../AppText/AppText'
 
-const Card = () => {
+const Card = ({items}) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableWithoutFeedback style={styles.container}>
            <Image 
-           source={require('../../../assets/jacket.jpg')}  
+           source={items.source}  
            style={styles.image}/>
            <View style={styles.textContainer}>
-                <AppText>Red Jacket for sale!</AppText>
-                <Text style={styles.text}>100$</Text>
+                <AppText>{items.title}</AppText>
+                <Text style={styles.text}>{items.price}$</Text>
            </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -21,12 +22,13 @@ export default Card
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:100,
         height:350,
         width:'92%',
         backgroundColor:white,
         borderRadius:25,
-        overflow:'hidden'
+        overflow:'hidden',
+        marginBottom:20,
+        alignSelf:'center'
 
     },
     image:{
