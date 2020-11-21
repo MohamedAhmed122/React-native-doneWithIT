@@ -6,20 +6,25 @@ import Constants from "expo-constants";
 import { getListings } from '../api/listings'
 import AppButton from '../Components/AppButton/AppButton'
 import AppActivityIndictor from '../Components/AppActivityIndictor';
+import {useNetInfo} from "@react-native-community/netinfo";
 import UseApi from '../Hooks/UseApi';
+import OfflineBar from '../Components/offlineBar/offlineBar';
 
 
 const ShoppingScreen = ({navigation}) => {
-    
+    const netInfo = useNetInfo()
+    // const [netReachable, setNetReachable] = useState(false)
     const {data :items, error, loading, request: getListingsApi} = UseApi(getListings)
     useEffect(()=>{
         getListingsApi()
     },[])
 
-    // console.log(items);
+   const netStatus = netInfo.isInternetReachable; 
+   
 
     return (
         <View style={styles.screen}>
+           {!netStatus && <OfflineBar />}
             {error && <>
             <Text style={styles.text}>couldn't get the data for the server</Text>
             <AppButton title='Retry' onPress={getListingsApi} />
