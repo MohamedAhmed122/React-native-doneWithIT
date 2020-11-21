@@ -4,14 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import TabNavigation from './App/Navigation/TabNavigation';
 
-import {useNetInfo} from "@react-native-community/netinfo";
+// import {useNetInfo} from "@react-native-community/netinfo";
+
+
 
 
 export default function App() {
 
-  const netInfo = useNetInfo();
+  // const netInfo = useNetInfo();
 
-  console.log(netInfo)
+  // console.log(netInfo)
   return (
     
       // netInfo.isInternetReachable ? <View>
