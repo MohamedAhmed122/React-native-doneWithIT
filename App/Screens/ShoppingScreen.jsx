@@ -16,7 +16,7 @@ const ShoppingScreen = ({navigation}) => {
         getListingsApi()
     },[])
 
-    console.log(items);
+    // console.log(items);
 
     return (
         <View style={styles.screen}>

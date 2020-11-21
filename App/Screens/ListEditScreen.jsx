@@ -9,6 +9,7 @@ import AppFormPicker from '../Components/Forms/AppFormPicker';
 import AppFormImage from '../Components/ImageInput/AppFormImage';
 import UseLocation from '../Hooks/UseLocation';
 import { white } from '../Config/Color';
+import { AddListings } from '../api/listings';
 
 
 
@@ -18,29 +19,39 @@ const ListEditScreen = () => {
         title: Yup.string().required().label('Title') ,
         price: Yup.number().required().label('Price'),
         category: Yup.string().required().nullable().label('Category') ,
-        description: Yup.string().required().min(12).label('Description'),
+        // description: Yup.string().required().min(12).label('Description'),
         images: Yup.array().min(1, 'At least insert one image')
         
     })
    
     let location = UseLocation();
+
+    const handleSubmit =  async listings => {
+        // listings.location= location;
+       const result = await AddListings(listings,
+        (progress)=> console.log(progress))
+       if (!result.ok)
+       return alert("couldn't send the data to the server")
+
+       alert('Success')
+    }
+
+
     return (
         <View style={styles.screen}>
             <AppForm
-                initialValues={{title: '', price: '',description:'',category:null, images:[]}}
+                initialValues={{title: '', price: '',description:'',category: null, images:[]}}
                 validationSchema={validationSchema}
-                onSubmit={(values)=>{
-                    console.log(values)
-                }}
+                onSubmit={handleSubmit}
             >
                     <>
-                    <View style={{height:150,}}>
-                    <AppFormImage name='images' />
-                    </View>
-                      
+                        <View style={{height:150,}}>
+                        <AppFormImage name='images' />
+                        </View>
+                        
                         <AppFormField  name='title' placeholder='Title'/>
                         <View style={styles.priceContainer}>
-                         <AppFormField 
+                        <AppFormField 
                             name='price'
                             placeholder='Price'
                             autoCorrect
@@ -51,7 +62,7 @@ const ListEditScreen = () => {
                             <AppFormPicker   name='category'  placeholder='Category'/>
                         </View>
                         
-                         <AppFormField 
+                        <AppFormField 
                             name='description'
                             placeholder='Description'
                             autoCorrect
