@@ -1,19 +1,31 @@
-import React  from 'react'
+import React, { useState }  from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import Constants from "expo-constants";
 import AppFormField from '../Components/Forms/AppFormField'
 import * as Yup from 'yup'
 import AppSubmitButton from '../Components/Forms/AppSubmitButton';
 import AppForm from '../Components/Forms/AppForm';
+import ErrorMessage from '../Components/Forms/ErrorMessage'
+import { Login } from '../api/auth'
 import { white } from '../Config/Color';
 
 
 const LoginScreen = () => {
 
+    const [loginFailed, setLoginFailed] = useState(false)
+
     const validationSchema = Yup.object().shape({
         email: Yup.string().required().email().label('Email') ,
-        password: Yup.string().required().min(6).label('Password')
+        password: Yup.string().required().min(3).label('Password')
     })
+
+    const handleSubmit = async({email, password}) =>{
+        const result =  await Login(email, password)
+        if(!result.ok) return setLoginFailed(true);
+
+        setLoginFailed(false)
+        console.log(result.data);
+    }
 
     return (
         <View style={styles.screen}>
@@ -23,9 +35,7 @@ const LoginScreen = () => {
             <AppForm
                 initialValues={{email: '', password:''}}
                 validationSchema={validationSchema}
-                onSubmit={(values)=>{
-                    console.log(values)
-                }}
+                onSubmit={handleSubmit}
             >
                     <>
                         <AppFormField 
@@ -46,6 +56,7 @@ const LoginScreen = () => {
                             secureTextEntry
                             name='password'
                         />
+                        <ErrorMessage error='Invalid email or/and password' isTouched={loginFailed} />
                         <AppSubmitButton 
                             title='Login' 
                         />

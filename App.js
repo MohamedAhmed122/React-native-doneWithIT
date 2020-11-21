@@ -3,6 +3,7 @@ import {  StyleSheet, Text, View,} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import TabNavigation from './App/Navigation/TabNavigation';
+import AuthNavigation from './App/Navigation/AuthNavigation'
 
 // import {useNetInfo} from "@react-native-community/netinfo";
 
@@ -21,7 +22,7 @@ export default function App() {
       // </View> :
     
    <NavigationContainer>
-     <TabNavigation />
+     <AuthNavigation />
    </NavigationContainer>
     // <View style={styles.container}>
     //   <ShoppingDetailScreen />
