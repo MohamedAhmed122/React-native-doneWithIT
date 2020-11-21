@@ -5,11 +5,12 @@ import { StyleSheet, } from 'react-native'
 import AppTextInput from '../AppInputs/AppTextInput'
 
 const AppFormField = ({name, ...otherProps}) => {
-    const {handleChange, errors, setFieldTouched, touched} = useFormikContext()
+    const {setFieldValue, values ,errors, setFieldTouched, touched} = useFormikContext()
     return (
         <>
             <AppTextInput 
-                onChangeText={handleChange(name)}
+                onChangeText={ (text) =>setFieldValue( name,text)}
+                value={values[name]}
                 onBlur={()=>setFieldTouched(name)}
                 {...otherProps}
             />

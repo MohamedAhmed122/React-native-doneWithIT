@@ -30,6 +30,6 @@ export const AddListings = (listing, onUploadProgress) =>{
 
    return  apiClient.post(endpoint, data,{
        onUploadProgress : progress => 
-       onUploadProgress(progress.loaded / rogress.total)
+       onUploadProgress(progress.loaded / progress.total)
    })
 }
