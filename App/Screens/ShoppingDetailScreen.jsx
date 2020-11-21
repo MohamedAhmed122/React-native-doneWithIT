@@ -9,7 +9,7 @@ const ShoppingDetailScreen = ({route}) => {
     const item = route.params
     return (
         <View style={styles.screen}>
-           <Image source={item.source} style={styles.image} />
+           <Image source={{uri: item.images[0].url}} style={styles.image} />
            <View style={styles.textContainer}>
                <AppText style={styles.textMain}>{item.title}</AppText>
                <Text style={styles.text}>${item.price}</Text>

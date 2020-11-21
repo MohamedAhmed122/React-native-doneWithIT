@@ -8,7 +8,7 @@ const Card = ({items, onPress}) => {
     return (
         <TouchableWithoutFeedback onPress={onPress} style={styles.container}>
            <Image 
-           source={items.source}  
+           source={{uri: items.images[0].url}  }
            style={styles.image}/>
            <View style={styles.textContainer}>
                 <AppText>{items.title}</AppText>
@@ -22,7 +22,7 @@ export default Card
 
 const styles = StyleSheet.create({
     container:{
-        height:350,
+        // height:380,
         width:'92%',
         backgroundColor:white,
         borderRadius:25,

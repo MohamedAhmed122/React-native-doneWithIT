@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import Card from '../Components/Card/Card'
 import { lightGray } from '../Config/Color'
 import Constants from "expo-constants";
+import { getListings } from '../api/listings'
+
 
 const ShoppingScreen = ({navigation}) => {
+    const [ items, setItems ] = useState([])
+
+    const getListingsApi = async () =>{
+        
+        const response = await getListings();
+        setItems(response.data) 
+    }
+
+    useEffect(()=>{
+        getListingsApi()
+    },[])
+    console.log(items);
+
     return (
         <View style={styles.screen}>
             <FlatList 
-                data={cardItems}
-                keyExtractor={(cardItems)=> cardItems.id.toString()}
+                data={items}
+                keyExtractor={(items)=> items.id.toString()}
                 renderItem={({item})=> (
                     <Card items ={item} onPress={()=>navigation.navigate('Shopping Details',  item)}/>
                 )}
@@ -30,25 +45,3 @@ const styles = StyleSheet.create({
     }
 })
 
-
-const cardItems=[
-    {
-        id:1,
-        source: require('../../assets/jacket.jpg'),
-        title: 'red Jacket for sale',
-        price:'40'
-    },
-    {
-        id:2,
-        source: require('../../assets/couch.jpg'),
-        title:'good Couch For Sale',
-        price:'170'
-    },
-   
-    // {
-    //     id:3,
-    //     source:require('../../assets/whiteJacket.jpeg'),
-    //     title:'white jacket Sale',
-    //     price:'30'
-    // },
-]
