@@ -5,18 +5,17 @@ import jwtDecode from 'jwt-decode'
 import TabNavigation from './App/Navigation/TabNavigation';
 import AuthNavigation from './App/Navigation/AuthNavigation'
 import AuthContext from './App/auth/Context';
-import { getToken } from './App/auth/Storage';
+import {getUser } from './App/auth/Storage';
 import { AppLoading } from 'expo';
 
 export default function App() {
 
   const [isReady, setIsReady] = useState(false)
   const [user,setUser] = useState()
-  const restoreToken = async () =>{
-    const token = await getToken()
-    if (!token) return;
 
-    setUser(jwtDecode(token))
+  const restoreToken = async () =>{
+    const user = await getUser()
+    setUser(user);
   }
 
   if (!isReady) 
