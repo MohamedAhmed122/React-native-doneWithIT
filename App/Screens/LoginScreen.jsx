@@ -8,6 +8,7 @@ import AppForm from '../Components/Forms/AppForm';
 import ErrorMessage from '../Components/Forms/ErrorMessage'
 import { Login } from '../api/auth'
 import { white } from '../Config/Color';
+import jwtDecode from 'jwt-decode'
 
 
 const LoginScreen = () => {
@@ -24,7 +25,8 @@ const LoginScreen = () => {
         if(!result.ok) return setLoginFailed(true);
 
         setLoginFailed(false)
-        console.log(result.data);
+        const user = jwtDecode(result.data);
+        console.log(user);
     }
 
     return (
