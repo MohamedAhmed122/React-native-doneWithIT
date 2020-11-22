@@ -16,6 +16,7 @@ import { storeToken } from '../auth/Storage';
 const LoginScreen = () => {
 
     const [loginFailed, setLoginFailed] = useState(false)
+    
     const authContext = useContext(AuthContext)
 
     const validationSchema = Yup.object().shape({
