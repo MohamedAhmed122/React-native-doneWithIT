@@ -1,33 +1,34 @@
-import React from 'react';
-import {  StyleSheet, Text, View,} from 'react-native';
+import React, { useState } from 'react';
+import {  StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-
+import jwtDecode from 'jwt-decode'
 import TabNavigation from './App/Navigation/TabNavigation';
 import AuthNavigation from './App/Navigation/AuthNavigation'
-
-// import {useNetInfo} from "@react-native-community/netinfo";
-
-
-
+import AuthContext from './App/auth/Context';
+import { getToken } from './App/auth/Storage';
+import { AppLoading } from 'expo';
 
 export default function App() {
 
-  // const netInfo = useNetInfo();
+  const [isReady, setIsReady] = useState(false)
+  const [user,setUser] = useState()
+  const restoreToken = async () =>{
+    const token = await getToken()
+    if (!token) return;
 
-  // console.log(netInfo)
+    setUser(jwtDecode(token))
+  }
+
+  if (!isReady) 
+      return <AppLoading startAsync={restoreToken} onFinish={()=> setIsReady(true)} />
+
+
   return (
-    
-      // netInfo.isInternetReachable ? <View>
-      //   <Text>there is net</Text>
-      // </View> :
-    
-   <NavigationContainer>
-     <AuthNavigation />
-   </NavigationContainer>
-    // <View style={styles.container}>
-    //   <ShoppingDetailScreen />
-    // </View>
-  
+      <AuthContext.Provider value={{user, setUser}}>
+        <NavigationContainer>
+         { !user? <AuthNavigation /> : <TabNavigation />}
+        </NavigationContainer>
+      </AuthContext.Provider>
   );
 }
 

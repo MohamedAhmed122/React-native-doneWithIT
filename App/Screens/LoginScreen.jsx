@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React, { useContext, useState }  from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import Constants from "expo-constants";
 import AppFormField from '../Components/Forms/AppFormField'
@@ -9,11 +9,14 @@ import ErrorMessage from '../Components/Forms/ErrorMessage'
 import { Login } from '../api/auth'
 import { white } from '../Config/Color';
 import jwtDecode from 'jwt-decode'
+import AuthContext from '../auth/Context';
+import { storeToken } from '../auth/Storage';
 
 
 const LoginScreen = () => {
 
     const [loginFailed, setLoginFailed] = useState(false)
+    const authContext = useContext(AuthContext)
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().required().email().label('Email') ,
@@ -27,6 +30,8 @@ const LoginScreen = () => {
         setLoginFailed(false)
         const user = jwtDecode(result.data);
         console.log(user);
+        authContext.setUser(user)
+        storeToken(result.data)
     }
 
     return (

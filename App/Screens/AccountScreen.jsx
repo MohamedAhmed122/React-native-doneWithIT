@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Constants from "expo-constants";
 import { FlatList } from 'react-native-gesture-handler';
@@ -6,14 +6,26 @@ import { lightGray, primary, secondary } from '../Config/Color';
 import ListIcon from '../Components/ListItem/ListIcon';
 import ListItem from '../Components/ListItem/ListItem';
 import AppSeparator from '../Components/ListItem/AppSeparator';
+import AuthContext from '../auth/Context';
+import { removeToken } from '../auth/Storage';
 
 
 const AccountScreen = ({navigation}) => {
 
+    const {setUser, user : {name, email}} = useContext(AuthContext);
+
+    const handleLogout = () =>{
+        setUser(null);
+        removeToken();
+    }
+    
     return (
         <View style={styles.screen}>
             <View style={styles.listItem}>
-                <ListItem source={require('../../assets/user.png')} title='Mohamed Youssef' description='mohamed@gmail.com'/>
+                <ListItem 
+                    source={require('../../assets/user.png')} 
+                    title={name} 
+                    description={email}/>
             </View>
             <View>
                 <FlatList
@@ -30,7 +42,11 @@ const AccountScreen = ({navigation}) => {
                     }
                 />
                 <View style={styles.listIcon}>
-                        <ListIcon title='Logout' icon='logout' color='gold'/>
+                        <ListIcon 
+                            onPress={handleLogout} 
+                            title='Logout' 
+                            icon='logout' 
+                            color='gold'/>
                 </View>
             </View>
         </View>
